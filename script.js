@@ -26,12 +26,17 @@ const sections = document.querySelectorAll('section[id]');
 
 function highlightNav() {
     const scrollY = window.scrollY + 100;
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10;
+
     sections.forEach(section => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
         const id = section.getAttribute('id');
         const link = document.querySelector(`.nav-link[href="#${id}"]`);
-        if (link) {
+        if (!link) return;
+        if (atBottom) {
+            link.classList.toggle('active', section === sections[sections.length - 1]);
+        } else {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
             link.classList.toggle('active', scrollY >= top && scrollY < top + height);
         }
     });
@@ -152,11 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== Visitor Counter =====
-fetch('https://api.countapi.xyz/hit/sangramthakur-resume/visits')
+fetch('https://countapi.mileshilliard.com/api/v1/hit/sangramthakur-portfolio-2024')
     .then(r => r.json())
     .then(data => {
         const el = document.getElementById('visitor-count');
-        if (el) el.textContent = data.value.toLocaleString();
+        if (el) el.textContent = Number(data.value).toLocaleString();
     })
     .catch(() => {
         const el = document.getElementById('visitor-count');
