@@ -151,6 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// ===== Visitor Counter =====
+fetch('https://api.countapi.xyz/hit/sangramthakur-resume/visits')
+    .then(r => r.json())
+    .then(data => {
+        const el = document.getElementById('visitor-count');
+        if (el) el.textContent = data.value.toLocaleString();
+    })
+    .catch(() => {
+        const el = document.getElementById('visitor-count');
+        if (el) el.textContent = '—';
+    });
+
 // ===== Smooth scroll for Safari =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

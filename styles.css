@@ -391,6 +391,15 @@ img { max-width: 100%; display: block; }
 
 /* ===== Footer ===== */
 .footer { padding: 2rem 0; border-top: 1px solid var(--border); }
+.visitor-counter {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+.visitor-counter .visitor-icon { margin-right: 0.3rem; }
+#visitor-count { font-weight: 600; color: var(--accent); }
 .footer-content {
     display: flex; justify-content: space-between; align-items: center;
 }
